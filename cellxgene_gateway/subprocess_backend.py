@@ -26,11 +26,11 @@ class SubprocessBackend:
     def create_cmd(self, cellxgene_loc, file_path, port, scripts, annotation_file_path):
         if enable_annotations and not annotation_file_path is None:
             if annotation_file_path == "":
-                extra_args = f" --annotations-dir {make_annotations(file_path)}"
+                extra_args = f" --annotations-dir \"{make_annotations(file_path)}\""
             else:
-                extra_args = f" --annotations-file {annotation_file_path}"
+                extra_args = f" --annotations-file \"{annotation_file_path}\""
                 gene_sets_file_path = annotation_file_path[:-4] + "_gene_sets.csv"
-                extra_args += f" --gene-sets-file {gene_sets_file_path}"
+                extra_args += f" --gene-sets-file \"{gene_sets_file_path}\""
         else:
             extra_args = " --disable-annotations"
             extra_args += " --disable-gene-sets-save"
@@ -40,7 +40,7 @@ class SubprocessBackend:
             extra_args += f" {cellxgene_args}"
 
         cmd = (
-            f"yes | {cellxgene_loc} launch {file_path}"
+            f"yes | \"{cellxgene_loc}\" launch \"{file_path}\""
             + f" --port {port}"
             + " --host 127.0.0.1"
             + extra_args
