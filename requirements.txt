@@ -1,4 +1,4 @@
-cellxgene
+cellxgene @ git+https://github.com/george-hall-ucl/cellxgene-noJIT@only_remove_import
 flask
 werkzeug
 psutil
